@@ -71,7 +71,7 @@ public class FindPlayer : MonoBehaviour
 
         }
 
-        private void OnDrawGizmos(){
+       /* private void OnDrawGizmos(){
             Gizmos.color = Color.white;
             UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, radius);
 
@@ -106,5 +106,5 @@ public class FindPlayer : MonoBehaviour
             angleInDegrees += eulerY;
             return new Vector2(Mathf.Sin(angleInDegrees*Mathf.Deg2Rad), Mathf.Cos(angleInDegrees* Mathf.Deg2Rad));
         }
-
+*/
     }

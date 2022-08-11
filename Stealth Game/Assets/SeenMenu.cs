@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SeenMenu : MonoBehaviour
 {
@@ -9,22 +10,47 @@ public class SeenMenu : MonoBehaviour
    public GameObject WinMenu;
     public bool isShowing;
      public FindPlayer seen; 
+     public FindPlayerVertical seenV; 
      public DoorState entered; 
+     public bool gameEnded;
 
-     void start(){
+
+     void Start(){
          menu.SetActive(isShowing);
+         gameEnded = false;
      }
- 
-     void FixedUpdate() {
-         if (seen.CanSeePlayer) {
+
+     void Update(){
+        if(gameEnded==false){
+       if (seen.CanSeePlayer || seenV.CanSeePlayer) {
+       
              isShowing = !isShowing;
              menu.SetActive(isShowing);
-             Time.timeScale = 0;
+              gameEnded = true;
+              pause();
          }
          else if(entered.entered){
             isShowing = !isShowing;
              WinMenu.SetActive(isShowing);
-                Time.timeScale = 0;
+              gameEnded = true;   
+              pause();     
          }
+     }
+          if(gameEnded==true &&Input.GetKey (KeyCode.R) ){
+                    resume();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } else if(gameEnded==true &&Input.GetKey (KeyCode.Q) ){
+                    quit();
+        }
+     }
+
+     void pause(){
+             Time.timeScale = 0f;
+     }
+      void resume(){
+            Time.timeScale = 1f; 
+     }
+     void quit(){
+        Application.Quit();
      }
 }

@@ -28,7 +28,7 @@ public class DoorState : MonoBehaviour
     void gameEnd(){
        // UnityEditor.EditorApplication.isPlaying = false;
        entered = true; 
-        Application.Quit();
+        
     }
 
     void OnTriggerStay2D(Collider2D target)
